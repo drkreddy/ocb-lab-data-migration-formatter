@@ -26,8 +26,10 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
 const main = function () {
     const sourceFile = process.argv[2];
     const destFile = process.argv[3];
-    const csvContent = fs.readFileSync(sourceFile, "utf-8");
-    writeAsCSV(lib.convertCSVToJSON(csvContent), lib.getDestFileName(sourceFile, destFile));
+    lib.convertCSVToJSON(sourceFile).then((data)=>{
+
+        writeAsCSV(data, lib.getDestFileName(sourceFile, destFile));
+    })
 };
 
 main();
