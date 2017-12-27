@@ -24,7 +24,7 @@ const convertCSVToJSON = (csvFilePath) => {
     });
 };
 
-const writeToDestFile = (contents, fileName) =>{
+const writeToDestFile = (contents, fileName) => {
     return fs.writeFileSync(fileName, contents);
 };
 
