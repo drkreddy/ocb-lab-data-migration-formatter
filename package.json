@@ -4,6 +4,10 @@
   "main": "main.js",
   "author": "sumanmaity112 <suman.maity112@gmail.com>",
   "license": "MIT",
+  "engineStrict": true,
+  "engines": {
+    "node": ">=4.8.4"
+  },
   "dependencies": {
     "csvtojson": "^1.1.9",
     "promise": "^8.0.1"
