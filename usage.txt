@@ -1,0 +1,7 @@
+Usage: node <options> <source file name> [<destination file name>]
+
+Options:
+    --FUCHIA, -F  Convert FUCHIA lab data to bahmni lab results format
+    --TIER, -T    Convert TIER lab data to bahmni lab results format
+
+destination file name is optional.

@@ -1,7 +1,7 @@
 const path = require('path');
 const csv = require('csvtojson');
 const Promise = require('promise');
-const fs = require('fs');
+const writeFile = require('fs').writeFile;
 
 const getDestFileName = (sourceFile, destFile) => {
     const extension = path.extname(sourceFile);
@@ -25,7 +25,12 @@ const convertCSVToJSON = (csvFilePath) => {
 };
 
 const writeToDestFile = (contents, fileName) => {
-    return fs.writeFileSync(fileName, contents);
+    return writeFile(fileName, contents, (err) => {
+        if (err)
+            throw err;
+        console.info("File has been successfully converted.");
+        console.info("The generated file can be found here: " + fileName);
+    });
 };
 
 const getDate = (dateString) => {

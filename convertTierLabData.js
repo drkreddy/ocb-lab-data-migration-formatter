@@ -20,12 +20,9 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
 
     return lib.writeToDestFile(contents.join("\r\n"), destFileName);
 };
-const main = function () {
-    const sourceFile = process.argv[2];
-    const destFile = process.argv[3];
-    lib.convertCSVToJSON(sourceFile).then((data) => {
-        writeAsCSV(data, lib.getDestFileName(sourceFile, destFile));
-    })
-};
 
-main();
+module.exports = (sourceFileName, destFileName)=>{
+    lib.convertCSVToJSON(sourceFileName).then((data) => {
+        writeAsCSV(data, lib.getDestFileName(sourceFileName, destFileName));
+    });
+};
