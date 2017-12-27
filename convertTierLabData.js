@@ -1,5 +1,4 @@
 const lib = require("./lib.js");
-const fs = require('fs');
 
 const writeAsCSV = function (lines, destFileName) { //Need to make it generic
     const contents = lines.filter((line) => {
@@ -20,14 +19,12 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
     contents.unshift(["Patient.name", "Patient.Surname", "Registration Number", "Date", "Visit Type",
         "Test", "Result", "Test", "Result"].join(","));
 
-    fs.writeFileSync(destFileName, contents.join("\r\n"))
-
+    return lib.writeToDestFile( contents.join("\r\n"), destFileName);
 };
 const main = function () {
     const sourceFile = process.argv[2];
     const destFile = process.argv[3];
     lib.convertCSVToJSON(sourceFile).then((data)=>{
-
         writeAsCSV(data, lib.getDestFileName(sourceFile, destFile));
     })
 };

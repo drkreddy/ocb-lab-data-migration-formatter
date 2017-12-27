@@ -1,5 +1,4 @@
 const lib = require("./lib.js");
-const fs = require('fs');
 
 const getVisitType = (visitTypeSynonym) => {
     switch (visitTypeSynonym) {
@@ -76,8 +75,7 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
         "Test", "Result", "Test", "Result", "Test", "Result", "Test", "Result", "Test", "Result", "Test", "Result",
         "Test", "Result", "Test", "Result", "Test", "Result", "Test", "Result"].join(","));
 
-    fs.writeFileSync(destFileName, contents.join("\r\n"))
-
+    return lib.writeToDestFile( contents.join("\r\n"), destFileName);
 };
 const main = function () {
     const sourceFile = process.argv[2];
