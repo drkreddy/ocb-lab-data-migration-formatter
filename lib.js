@@ -33,10 +33,12 @@ const writeToDestFile = (contents, fileName) => {
     });
 };
 
+const getIdentifier = (identifier)=> identifier.replace(/^(CHK)|(CP)/,"");
+
 const getTestName = (testName, value, defaultTestName) => !!value ? testName : defaultTestName;
 
 const getDate = (dateString) => {
     return new Date(dateString).toISOString().split("T")[0];
 };
 
-module.exports = {getDestFileName, convertCSVToJSON, getDate, writeToDestFile, getTestName};
+module.exports = {getDestFileName, convertCSVToJSON, getDate, writeToDestFile, getTestName, getIdentifier};

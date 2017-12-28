@@ -6,7 +6,7 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
     }).map((line) => [
             line["First Name"],
             line["Last Name"],
-            line["Patient ID"],
+            lib.getIdentifier(line["Patient ID"]),
             lib.getDate(line["Test date"]),
             "OPD",
             lib.getTestName("CD4", line["CD4"], ""),

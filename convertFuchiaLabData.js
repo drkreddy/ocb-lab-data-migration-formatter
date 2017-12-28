@@ -48,7 +48,7 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
         const glucoseValue = mapGlucoseValue(line['Glucose(urine)(0, 1+, 2+, 3+, Non spécifié)']);
         const proteinValue = mapProteinValue(line["Proteine(urine)(0, 1+, 2+, 3+, Non spécifié)"]);
         return [
-            line["Patient ID"], lib.getDate(line["Sample Date"]), getVisitType(line['Visit Type']),
+            lib.getIdentifier(line["Patient ID"]), lib.getDate(line["Sample Date"]), getVisitType(line['Visit Type']),
             lib.getTestName("Hépatite B", hepBValue), hepBValue,
             lib.getTestName("GPT", line["GPT"]), line["GPT"],
             lib.getTestName("Creatinine", line["Creatinine"]), line["Creatinine"],
