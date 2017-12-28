@@ -9,9 +9,9 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
             line["Patient ID"],
             lib.getDate(line["Test date"]),
             "OPD",
-            "CD4",
+            lib.getTestName("CD4", line["CD4"], ""),
             line["CD4"],
-            "Charge Virale HIV - Value",
+            lib.getTestName("Charge Virale HIV - Value", line["Charge Virale HIV - Value"], ""),
             line["Charge Virale HIV - Value"]
         ].join(",")
     );
@@ -21,7 +21,7 @@ const writeAsCSV = function (lines, destFileName) { //Need to make it generic
     return lib.writeToDestFile(contents.join("\r\n"), destFileName);
 };
 
-module.exports = (sourceFileName, destFileName)=>{
+module.exports = (sourceFileName, destFileName) => {
     lib.convertCSVToJSON(sourceFileName).then((data) => {
         writeAsCSV(data, lib.getDestFileName(sourceFileName, destFileName));
     });

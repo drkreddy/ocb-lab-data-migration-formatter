@@ -33,8 +33,10 @@ const writeToDestFile = (contents, fileName) => {
     });
 };
 
+const getTestName = (testName, value, defaultTestName) => !!value ? testName : defaultTestName;
+
 const getDate = (dateString) => {
     return new Date(dateString).toISOString().split("T")[0];
 };
 
-module.exports = {getDestFileName, convertCSVToJSON, getDate, writeToDestFile};
+module.exports = {getDestFileName, convertCSVToJSON, getDate, writeToDestFile, getTestName};

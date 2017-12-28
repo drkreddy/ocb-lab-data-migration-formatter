@@ -43,20 +43,24 @@ const mapProteinValue = (synonym) => mapGlucoseValue(synonym);
 const writeAsCSV = function (lines, destFileName) { //Need to make it generic
     const contents = lines.filter((line) => {
         return !!line["Sample Date"];
-    }).map((line) => [
+    }).map((line) => {
+        const hepBValue = mapHepBValue(line['Hep B(Positive, Negative, Not specified)']);
+        const glucoseValue = mapGlucoseValue(line['Glucose(urine)(0, 1+, 2+, 3+, Non spécifié)']);
+        const proteinValue = mapProteinValue(line["Proteine(urine)(0, 1+, 2+, 3+, Non spécifié)"]);
+        return [
             line["Patient ID"], lib.getDate(line["Sample Date"]), getVisitType(line['Visit Type']),
-            "Hépatite B", mapHepBValue(line['Hep B(Positive, Negative, Not specified)']),
-            "GPT", line["GPT"],
-            "Creatinine", line["Creatinine"],
-            "Hemoglobine", line["Hemoglobine"],
-            "Glucose", mapGlucoseValue(line['Glucose(urine)(0, 1+, 2+, 3+, Non spécifié)']),
-            "LYM%", line["LYM%(sang)"],
-            "CD4", line["CD4"],
-            "CD4 % (enfants de - 5 ans)", line["CD4 %"],
-            "Viral Load", line["Viral Load"],
-            "Protéines", mapProteinValue(line["Proteine(urine)(0, 1+, 2+, 3+, Non spécifié)"])
-        ].join(",")
-    );
+            lib.getTestName("Hépatite B", hepBValue), hepBValue,
+            lib.getTestName("GPT", line["GPT"]), line["GPT"],
+            lib.getTestName("Creatinine", line["Creatinine"]), line["Creatinine"],
+            lib.getTestName("Hemoglobine", line["Hemoglobine"]), line["Hemoglobine"],
+            lib.getTestName("Glucose", glucoseValue), glucoseValue,
+            lib.getTestName("LYM%", line["LYM%(sang)"]), line["LYM%(sang)"],
+            lib.getTestName("CD4", line["CD4"]), line["CD4"],
+            lib.getTestName("CD4 % (enfants de - 5 ans)", line["CD4 %"]), line["CD4 %"],
+            lib.getTestName("Viral Load", line["Viral Load"]), line["Viral Load"],
+            lib.getTestName("Protéines", proteinValue), proteinValue
+        ].join(",");
+    });
     contents.unshift(["Registration Number", "Date", "Visit Type",
         "Test", "Result",
         "Test", "Result",
