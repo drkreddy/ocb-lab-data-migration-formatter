@@ -14,9 +14,9 @@ const getVisitType = (visitTypeSynonym) => {
 const mapHepBValue = (synonym) => {
     switch (synonym) {
         case 'Positive':
-            return 'Positive';
+            return 'Positif';
         case 'Negative':
-            return 'Negative';
+            return 'Négatif';
         default:
             return '';
     }
@@ -25,7 +25,7 @@ const mapHepBValue = (synonym) => {
 const mapGlucoseValue = (synonym) => {
     switch (synonym) {
         case '0':
-            return 'négatif';
+            return 'Négatif';
         case '1+':
             return '+';
         case '2+':
